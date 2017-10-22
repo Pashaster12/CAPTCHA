@@ -1,0 +1,35 @@
+<html lang="ru">
+    <head>
+        <title>Графическая CAPTCHA demo</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <form action="/captcha_verify.php" method="post" enctype="multipart/form-data">
+            <p>
+                <b>Введите комментарий:</b>
+            </p>
+
+            <p>
+                <textarea name="comment" rows="12" cols="21"></textarea>
+            </p>
+
+            <p>
+                <img src='/captcha.php' id='captcha-image'>
+
+                <a href="javascript:void(0);" onclick="document.getElementById('captcha-image').src = 'captcha.php?rid=' + Math.random();">
+                    Обновить капчу
+                </a>
+            </p>
+
+            <p>
+                <span>Введите капчу:</span>
+                <input type="text" name="<?php echo $captcha_code; ?>">
+            </p>
+
+            <p>
+                <input type="submit" name="submit_form" value="Продолжить">
+            </p>
+        </form>
+    </body>
+</html>
