@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['g-recaptcha-response'])) $captcha_response = $_POST['g-recaptcha-response'];
-else die('NO CAPTCHA');
+else die('На форме нет капчи! Обратитесь к администратору!');
 
 $url = 'https://www.google.com/recaptcha/api/siteverify';
 $params = [
