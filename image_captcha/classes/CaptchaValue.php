@@ -42,24 +42,22 @@ class CaptchaValue implements CaptchaInterface
 
     public function captcha_image($code)
     {
-        $linenum = rand(3, 5);
-
-        $font_arr = array_values(array_diff(scandir($this->font_dir), array('.', '..')));
-        $font_size = rand(20, 30);
-
         $image = imagecreatetruecolor(150, 70);
-
         imagesetthickness($image, 2);
 
         $background_color = imagecolorallocate($image, rand(220, 255), rand(220, 255), rand(220, 255));
         imagefill($image, 0, 0, $background_color);
 
+	$linenum = rand(3, 5);
         for ($i = 0; $i < $linenum; $i++) {
             $color = imagecolorallocate($image, rand(0, 150), rand(0, 100), rand(0, 150));
             imageline($image, rand(0, 150), rand(1, 70), rand(20, 150), rand(1, 70), $color);
         }
 
+	$font_arr = array_values(array_diff(scandir($this->font_dir), array('.', '..')));
+        $font_size = rand(20, 30);
         $x = rand(0, 10);
+	
         for ($i = 0; $i < strlen($code); $i++) {
             $x += 20;
             $letter = substr($code, $i, 1);
