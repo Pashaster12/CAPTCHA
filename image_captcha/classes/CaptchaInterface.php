@@ -2,6 +2,6 @@
 
 interface CaptchaInterface
 {
-	public function session_write($code);
-	public function generate_code();
+    public function session_write($code);
+    public function generate_code();
 }
