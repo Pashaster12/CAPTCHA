@@ -1,0 +1,40 @@
+<html lang="ru">
+    <head>
+        <title>Google reCAPTCHA noCAPTCHA demo</title>
+        <meta charset="utf-8">
+		<script src='https://www.google.com/recaptcha/api.js?render=your_key'></script>
+    </head>
+
+    <body>
+        <form id="comment-form" method="post" action="verify_captcha.php">
+			<input type="hidden" name="token" id="token">
+			<input type="hidden" name="action" id="action">
+			
+            <p>
+                <b>Введите комментарий:</b>
+            </p>
+
+            <p>
+                <textarea name="comment" rows="12" cols="21"></textarea>
+            </p>
+			
+            <p>
+                <input type="submit" value="Отправить">
+            </p>
+        </form>
+    </body>
+	
+	<script>
+		let captcha_action = 'add_comment';
+		
+		grecaptcha.ready(function() {
+			grecaptcha.execute('your_key', {action: captcha_action})
+				.then(function(token) {
+					if (token) {
+						document.getElementById('token').value = token;
+						document.getElementById('action').value = captcha_action;
+					}
+				});
+		});
+	</script>
+</html>
